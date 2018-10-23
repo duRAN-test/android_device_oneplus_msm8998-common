@@ -3,7 +3,6 @@ on init
     write /sys/devices/soc/1da4000.ufshc/clkscale_enable 0
     write /sys/devices/soc/1da4000.ufshc/clkgate_enable 0
     write /sys/devices/soc/1da4000.ufshc/hibern8_on_idle_enable 0
-
     write /sys/module/lpm_levels/parameters/sleep_disabled Y
 
     # Add a cpuset for the camera daemon
@@ -26,9 +25,7 @@ on charger
     write /sys/devices/soc/1da4000.ufshc/clkscale_enable 1
     write /sys/devices/soc/1da4000.ufshc/clkgate_enable 1
     write /sys/devices/soc/1da4000.ufshc/hibern8_on_idle_enable 1
-
     write /sys/module/lpm_levels/parameters/sleep_disabled N
-
 
 on late-fs
 on property:sys.boot_completed=1
@@ -39,8 +36,6 @@ on property:sys.boot_completed=1
 
     # disable thermal core control until CPU is configured
     write /sys/module/msm_thermal/core_control/enabled 0
-
-
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
@@ -62,11 +57,9 @@ on property:sys.boot_completed=1
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 10
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/mem_latency/ratio_ceil 400
-
     write /sys/class/devfreq/soc:qcom,memlat-cpu4/governor "mem_latency"
     write /sys/class/devfreq/soc:qcom,memlat-cpu4/polling_interval 10
     write /sys/class/devfreq/soc:qcom,memlat-cpu4/mem_latency/ratio_ceil 400
-
     write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
 
     # Setup power retention
